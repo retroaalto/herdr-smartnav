@@ -94,14 +94,17 @@ At runtime, herdr only needs the binary (`herdr-smartnav`) and manifest
 
 ## Keybindings
 
-First, unbind the built-in directional keys in `~/.config/herdr/config.toml`:
+The plugin actions (`smartnav.left`, etc.) replace the built-in
+`focus_pane_left` / `focus_pane_down` / `focus_pane_up` / `focus_pane_right`
+commands. Remove or comment out any existing `focus_pane_*` bindings in
+`~/.config/herdr/config.toml` to avoid conflicts:
 
 ```toml
-# Comment out or remove:
-# focus_pane_left  = ["prefix+h", "alt+h"]
-# focus_pane_down  = ["prefix+j", "alt+j"]
-# focus_pane_up    = ["prefix+k", "alt+k"]
-# focus_pane_right = ["prefix+l", "alt+l"]
+# Remove or comment out the default bindings:
+# focus_pane_left  = "prefix+h"
+# focus_pane_down  = "prefix+j"
+# focus_pane_up    = "prefix+k"
+# focus_pane_right = "prefix+l"
 ```
 
 Then bind the plugin actions:
