@@ -43,25 +43,44 @@ Now from A, press right, then up:
 
 ## Install
 
-```bash
-# Clone and build
-git clone https://github.com/retroaalto/herdr-smartnav ~/.config/herdr/plugins/herdr-smartnav
-cd ~/.config/herdr/plugins/herdr-smartnav
-go build -o herdr-smartnav .
+### From release (recommended)
 
-# Register the plugin
+Download the latest tarball for your platform from the
+[releases page](https://github.com/retroaalto/herdr-smartnav/releases), verify
+it, extract it, and register the plugin:
+
+```bash
+mkdir -p ~/.config/herdr/plugins/herdr-smartnav
+tar -xzf herdr-smartnav-vX.Y.Z-<os>-<arch>.tar.gz -C ~/.config/herdr/plugins/ --strip-components=1
 herdr plugin link ~/.config/herdr/plugins/herdr-smartnav
 
 # Restart herdr to start the daemon (reload-config is not enough —
 # startup hooks only run when the server starts)
-herdr server stop
-herdr server
+herdr server stop && herdr server
+```
+
+Verify the archive with the included checksum before extracting:
+
+```bash
+sha256sum -c herdr-smartnav-vX.Y.Z-<os>-<arch>.tar.gz.sha256
 ```
 
 > **Note:** The daemon runs as a `[[startup]]` hook. herdr only runs startup
 > hooks on server start, not on `reload-config` or `plugin link`. If you
 > update the binary later, restart the server (`herdr server stop && herdr
 > server`) instead of reloading.
+
+### From source
+
+If you prefer to build from source:
+
+```bash
+git clone https://github.com/retroaalto/herdr-smartnav ~/.config/herdr/plugins/herdr-smartnav
+cd ~/.config/herdr/plugins/herdr-smartnav
+go build -o herdr-smartnav .
+herdr plugin link ~/.config/herdr/plugins/herdr-smartnav
+herdr server stop && herdr server
+```
 
 At runtime, herdr only needs the binary (`herdr-smartnav`) and manifest
 (`herdr-plugin.toml`) in that directory. Source files (`.go`) are optional.
@@ -143,10 +162,11 @@ tests over the socket API. See `test/README.md` for details.
 
 ```bash
 make bump-version VERSION=x.y.z   # edit toml, git commit, git tag
-make release                      # cross-compile + versioned tarballs
+make release                      # cross-compile + tarballs + checksums + verify
 ```
 
-Artifacts land in `release/` as `herdr-smartnav-vX.Y.Z-{os}-{arch}.tar.gz`.
+Artifacts land in `release/` as `herdr-smartnav-vX.Y.Z-{os}-{arch}.tar.gz`, each
+with a matching `.sha256` file, plus a combined `checksums.txt`.
 
 ## Uninstall
 
