@@ -1,0 +1,4 @@
+/herdr-smartnav
+*.tmp
+*.log
+/release/

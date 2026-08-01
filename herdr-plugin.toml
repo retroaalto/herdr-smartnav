@@ -1,0 +1,33 @@
+id = "smartnav"
+name = "Smart Pane Navigation"
+version = "0.1.0"
+min_herdr_version = "0.7.5"
+description = "Direction-aware pane navigation that remembers the last active pane per split (tmux-style)"
+platforms = ["linux", "macos"]
+
+[[startup]]
+command = ["./herdr-smartnav", "daemon"]
+
+[[actions]]
+id = "left"
+title = "Focus left (smart)"
+contexts = ["workspace"]
+command = ["./herdr-smartnav", "left"]
+
+[[actions]]
+id = "right"
+title = "Focus right (smart)"
+contexts = ["workspace"]
+command = ["./herdr-smartnav", "right"]
+
+[[actions]]
+id = "up"
+title = "Focus up (smart)"
+contexts = ["workspace"]
+command = ["./herdr-smartnav", "up"]
+
+[[actions]]
+id = "down"
+title = "Focus down (smart)"
+contexts = ["workspace"]
+command = ["./herdr-smartnav", "down"]
