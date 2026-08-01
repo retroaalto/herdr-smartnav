@@ -39,7 +39,7 @@ Now from A, press right, then up:
 
 - herdr >= 0.7.5
 - Go 1.22+ (build only)
-- Linux or macOS
+- Linux or macOS (macOS binaries are cross-compiled; not tested on actual hardware)
 
 ## Install
 
