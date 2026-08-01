@@ -6,7 +6,7 @@ VERSION := $(shell grep '^version = ' herdr-plugin.toml | head -1 | sed 's/.*"\(
 
 PLATFORMS := linux/amd64 linux/arm64 darwin/amd64 darwin/arm64
 
-.PHONY: build vet fmt test clean release release-clean bump-version
+.PHONY: build vet fmt test clean release release-clean bump-version publish
 
 hooks:
 	git config core.hooksPath .githooks
@@ -53,6 +53,10 @@ bump-version:
 	@git commit -m "bump version to $(VERSION)"
 	@git tag -a "v$(VERSION)" -m "v$(VERSION)"
 	@echo "=> bumped to $(VERSION), committed, tagged v$(VERSION)"
+
+publish: release
+	gh release create "v$(VERSION)" $(RELEASE)/$(BIN)-v$(VERSION)-*.tar.gz \
+		--title "v$(VERSION)" --notes ""
 
 clean:
 	rm -f $(BIN)
