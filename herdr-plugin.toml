@@ -1,6 +1,6 @@
 id = "smartnav"
 name = "Smart Pane Navigation"
-version = "0.1.1"
+version = "0.1.2"
 min_herdr_version = "0.7.5"
 description = "Direction-aware pane navigation that remembers the last active pane per split (tmux-style)"
 platforms = ["linux", "macos"]
