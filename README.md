@@ -43,19 +43,31 @@ Now from A, press right, then up:
 
 ## Install
 
-### From release (recommended)
+### Via herdr CLI (recommended)
 
-Download the latest tarball for your platform from the
-[releases page](https://github.com/retroaalto/herdr-smartnav/releases), verify
-it, extract it, and register the plugin:
+```bash
+herdr plugin install retroaalto/herdr-smartnav
+
+# Restart herdr to start the daemon (reload-config is not enough —
+# startup hooks only run when the server starts)
+herdr server stop && herdr server
+```
+
+> **Note:** The daemon runs as a `[[startup]]` hook. herdr only runs startup
+> hooks on server start, not on `reload-config` or `plugin link`. If you
+> update the binary later, restart the server (`herdr server stop && herdr
+> server`) instead of reloading.
+
+### From release tarball
+
+If the CLI install is unavailable, download the latest tarball for your platform
+from the [releases page](https://github.com/retroaalto/herdr-smartnav/releases),
+verify it, extract it, and link the plugin:
 
 ```bash
 mkdir -p ~/.config/herdr/plugins/herdr-smartnav
 tar -xzf herdr-smartnav-vX.Y.Z-<os>-<arch>.tar.gz -C ~/.config/herdr/plugins/ --strip-components=1
 herdr plugin link ~/.config/herdr/plugins/herdr-smartnav
-
-# Restart herdr to start the daemon (reload-config is not enough —
-# startup hooks only run when the server starts)
 herdr server stop && herdr server
 ```
 
@@ -64,11 +76,6 @@ Verify the archive with the included checksum before extracting:
 ```bash
 sha256sum -c herdr-smartnav-vX.Y.Z-<os>-<arch>.tar.gz.sha256
 ```
-
-> **Note:** The daemon runs as a `[[startup]]` hook. herdr only runs startup
-> hooks on server start, not on `reload-config` or `plugin link`. If you
-> update the binary later, restart the server (`herdr server stop && herdr
-> server`) instead of reloading.
 
 ### From source
 
