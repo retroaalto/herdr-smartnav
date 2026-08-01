@@ -5,6 +5,9 @@ min_herdr_version = "0.7.5"
 description = "Direction-aware pane navigation that remembers the last active pane per split (tmux-style)"
 platforms = ["linux", "macos"]
 
+[[build]]
+command = ["go", "build", "-o", "herdr-smartnav", "."]
+
 [[startup]]
 command = ["./herdr-smartnav", "daemon"]
 
