@@ -107,42 +107,32 @@ commands. Remove or comment out any existing `focus_pane_*` bindings in
 # focus_pane_right = "prefix+l"
 ```
 
-Then bind the plugin actions:
-
-```toml
-[[keys.command]]
-key = "alt+h"
-type = "plugin_action"
-command = "smartnav.left"
-description = "Focus left (smart)"
-
-[[keys.command]]
-key = "alt+j"
-type = "plugin_action"
-command = "smartnav.down"
-description = "Focus down (smart)"
-
-[[keys.command]]
-key = "alt+k"
-type = "plugin_action"
-command = "smartnav.up"
-description = "Focus up (smart)"
-
-[[keys.command]]
-key = "alt+l"
-type = "plugin_action"
-command = "smartnav.right"
-description = "Focus right (smart)"
-```
-
-Prefix bindings work the same way:
+Then bind the plugin actions using the same keys:
 
 ```toml
 [[keys.command]]
 key = "prefix+h"
 type = "plugin_action"
 command = "smartnav.left"
-# ... etc
+description = "Focus left (smart)"
+
+[[keys.command]]
+key = "prefix+j"
+type = "plugin_action"
+command = "smartnav.down"
+description = "Focus down (smart)"
+
+[[keys.command]]
+key = "prefix+k"
+type = "plugin_action"
+command = "smartnav.up"
+description = "Focus up (smart)"
+
+[[keys.command]]
+key = "prefix+l"
+type = "plugin_action"
+command = "smartnav.right"
+description = "Focus right (smart)"
 ```
 
 Reload after changes: `herdr server reload-config`
