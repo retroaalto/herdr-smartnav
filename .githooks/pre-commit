@@ -1,0 +1,10 @@
+#!/bin/sh
+if ! git rev-parse --verify HEAD >/dev/null 2>&1; then
+  exit 0
+fi
+branch="$(git branch --show-current)"
+if [ "$branch" = "master" ]; then
+  echo "ERROR: Direct commits to 'master' are not allowed." >&2
+  echo "Create a feature branch and merge it instead." >&2
+  exit 1
+fi
